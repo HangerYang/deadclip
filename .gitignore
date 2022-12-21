@@ -1,0 +1,152 @@
+**/cc
+**/Poison
+**/result_dog
+**/result_dog_clean
+**/result_truck
+**/result_truck_clean
+**/Sample_Pic
+**/__pycache__
+
+
+CyCLIP/dataset/
+
+CyCLIP/*.out
+CyCLIP/*help.py
+
+# Byte-compiled / optimized / DLL files
+CyCLIP/__pycache__/
+CyCLIP/*.py[cod]
+CyCLIP/*$py.class
+
+# C extensions
+CyCLIP/*.so
+
+# Distribution / packaging
+CyCLIP/.Python
+CyCLIP/.locks/
+
+# data/
+CyCLIP/analysis/embeddings/
+CyCLIP/checkpoints/
+CyCLIP/logs/
+CyCLIP/runs/
+CyCLIP/wandb/
+CyCLIP/build/
+CyCLIP/develop-eggs/
+CyCLIP/dist/
+CyCLIP/downloads/
+CyCLIP/eggs/
+CyCLIP/.eggs/
+lib/
+CyCLIP/lib64/
+CyCLIP/parts/
+CyCLIP/sdist/
+var/
+CyCLIP/wheels/
+CyCLIP/pip-wheel-metadata/
+CyCLIP/share/python-wheels/
+CyCLIP/*.egg-info/
+CyCLIP/.installed.cfg
+CyCLIP/*.egg
+CyCLIP/MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+CyCLIP/*.manifest
+CyCLIP/*.spec
+
+# Installer logs
+CyCLIP/pip-log.txt
+CyCLIP/pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+CyCLIP/htmlcov/
+CyCLIP/.tox/
+CyCLIP/.nox/
+CyCLIP/.coverage
+CyCLIP/.coverage.*
+CyCLIP/.cache
+CyCLIP/nosetests.xml
+CyCLIP/coverage.xml
+CyCLIP/*.cover
+CyCLIP/*.py,cover
+CyCLIP/.hypothesis/
+CyCLIP/.pytest_cache/
+
+# Translations
+*.mo
+CyCLIP/*.pot
+
+# Django stuff:
+CyCLIP/*.log
+CyCLIP/local_settings.py
+CyCLIP/db.sqlite3
+CyCLIP/db.sqlite3-journal
+
+# Flask stuff:
+CyCLIP/instance/
+CyCLIP/.webassets-cache
+
+# Scrapy stuff:
+CyCLIP/.scrapy
+
+# Sphinx documentation
+CyCLIP/docs/_build/
+
+# PyBuilder
+CyCLIP/target/
+
+# Jupyter Notebook
+CyCLIP/.ipynb_checkpoints
+
+# IPython
+CyCLIP/profile_default/
+CyCLIP/ipython_config.py
+
+# pyenv
+CyCLIP/.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+CyCLIP/__pypackages__/
+
+# Celery stuff
+CyCLIP/celerybeat-schedule
+CyCLIP/celerybeat.pid
+
+# SageMath parsed files
+CyCLIP/*.sage.py
+
+# Environments
+.env
+CyCLIP/.venv
+env/
+CyCLIP/venv/
+ENV/
+CyCLIP/env.bak/
+CyCLIP/venv.bak/
+
+# Spyder project settings
+CyCLIP/.spyderproject
+CyCLIP/.spyproject
+
+# Rope project settings
+CyCLIP/.ropeproject
+
+# mkdocs documentation
+CyCLIP//site
+
+# mypy
+CyCLIP/.mypy_cache/
+CyCLIP/.dmypy.json
+CyCLIP/dmypy.json
+
+# Pyre type checker
+CyCLIP/.pyre/
