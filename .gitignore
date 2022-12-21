@@ -1,11 +1,11 @@
 **/cc
 **/Poison
-**/result_dog
-**/result_dog_clean
-**/result_truck
-**/result_truck_clean
-**/Sample_Pic
-**/__pycache__
+**/result_dog/
+**/result_dog_clean/
+**/result_truck/
+**/result_truck_clean/
+**/Sample_Pic/
+**/__pycache__/
 
 
 CyCLIP/dataset/
@@ -29,6 +29,7 @@ CyCLIP/.locks/
 CyCLIP/analysis/embeddings/
 CyCLIP/checkpoints/
 CyCLIP/logs/
+CyCLIP/analysis/
 CyCLIP/runs/
 CyCLIP/wandb/
 CyCLIP/build/
@@ -73,6 +74,7 @@ CyCLIP/*.cover
 CyCLIP/*.py,cover
 CyCLIP/.hypothesis/
 CyCLIP/.pytest_cache/
+CyCLIP/data/
 
 # Translations
 *.mo
