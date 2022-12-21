@@ -1,0 +1,2 @@
+python verify_text_with_csv.py --model_name clip_dirty --device 5 --path /home/hyang/deadclip/only_poison_truck.csv --run_name poisoned
+python verify_text_with_csv.py --model_name clip_dirty_CL --device 5 --path /home/hyang/deadclip/only_poison_truck.csv --run_name poisoned
