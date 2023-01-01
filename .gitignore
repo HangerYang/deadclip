@@ -1,14 +1,23 @@
-**/cc
-**/Poison
-**/result_dog/
-**/result_dog_clean/
-**/result_truck/
-**/result_truck_clean/
-**/Sample_Pic/
-**/__pycache__/
+cc
+Poison
+result_dog/
+result_dog_clean/
+result_truck/
+result_truck_clean/
+Sample_Pic/
+__pycache__/
+*.csv
+*.ipynb
+checkmate/
+CyCLIP/save_verify_text_with_csv/*
+CyCLIP/save_verify_text_with_template/*
+CyCLIP/*.sh
+*.sh
+
 
 
 CyCLIP/dataset/
+CyCLIP/data
 
 CyCLIP/*.out
 CyCLIP/*help.py

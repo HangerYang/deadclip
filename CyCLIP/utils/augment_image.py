@@ -6,10 +6,22 @@ from tqdm import tqdm
 from utils import config
 from multiprocessing import Pool
 from PIL import Image, ImageFile
-
+from torchvision import transforms
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-transform = torchvision.transforms.AutoAugment()
+transform = transforms.Compose([transforms.RandomHorizontalFlip(),
+                                transforms.RandomResizedCrop(size=224),
+                                    transforms.RandomApply([
+                                              transforms.ColorJitter(brightness=0.5,
+                                                                     contrast=0.5,
+                                                                     saturation=0.5,
+                                                                     hue=0.1)
+                                          ], p=0.8),
+                                          transforms.RandomGrayscale(p=0.2),
+                                          transforms.GaussianBlur(kernel_size=21),
+                                        #   transforms.ToTensor()
+                                        #   transforms.Normalize((0.5,), (0.5,))
+                                         ])
 
 def _augment_image(image_file):
     image = Image.open(image_file).convert('RGB')

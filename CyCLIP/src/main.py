@@ -63,9 +63,16 @@ def worker(rank, options, logger):
     model, processor = load_model(name = options.model_name, pretrained = options.pretrained)
     memory_bank = None
     if options.memory_bank:
-        logging.info("memory bank online")
-        memory_bank = NNMemoryBankModule(size=options.memory_bank_size)
-        memory_bank.to(options.device)
+        if options.double_stunt:
+            memory_bank_image = NNMemoryBankModule(size=options.memory_bank_size // 2)
+            memory_bank_text = NNMemoryBankModule(size=options.memory_bank_size // 2)
+            memory_bank_image.to(options.device)
+            memory_bank_text.to(options.device)
+            logging.info("double stunt online")
+        else:
+            logging.info("memory bank online")
+            memory_bank = NNMemoryBankModule(size=options.memory_bank_size)
+            memory_bank.to(options.device)
 
 
     if(options.device == "cpu"):
@@ -132,7 +139,10 @@ def worker(rank, options, logger):
                 logging.info(f"Starting Epoch {epoch}")
 
             start = time.time()
-            train(epoch, model, data, optimizer, scheduler, scaler, options, memory_bank)
+            if options.double_stunt:
+                train(epoch, model, data, optimizer, scheduler, scaler, options, memory_bank_image, memory_bank_text)
+            else:
+                train(epoch, model, data, optimizer, scheduler, scaler, options, memory_bank)
             end = time.time()
 
             if(options.master): 

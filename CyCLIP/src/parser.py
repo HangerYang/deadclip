@@ -48,7 +48,8 @@ def parse_args():
     parser.add_argument("--representation", action = "store_true", default = False )
     parser.add_argument("--memory_bank", action = "store_true", default = False )
     parser.add_argument("--memory_bank_size", type = int, default = 256)
-    parser.add_argument("--inmodal_positive", action = "store_true", default = False)
-    parser.add_argument("--crossmodal_positive", action = "store_true", default = False)
+    parser.add_argument("--warmup_epoch", type = int, default = 5)
+    parser.add_argument("--double_stunt", action = "store_true", default = False)
+    parser.add_argument("--cross_aug", action = "store_true", default = False)
     options = parser.parse_args()
     return options
