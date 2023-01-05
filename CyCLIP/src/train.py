@@ -100,27 +100,33 @@ def get_loss_double(umodel, outputs, criterion, options, memory_bank_image, memo
 
 
 def get_loss(umodel, outputs, criterion, options, memory_bank, current_epoch):  
-    if(options.inmodal):
-        image_embeds, augmented_image_embeds = outputs.image_embeds[:len(outputs.image_embeds) // 2], outputs.image_embeds[len(outputs.image_embeds) // 2:]
-        text_embeds, augmented_text_embeds = outputs.text_embeds[:len(outputs.text_embeds) // 2], outputs.text_embeds[len(outputs.text_embeds) // 2:]
-        if options.memory_bank:
-            image_embeds_nn = memory_bank(image_embeds, update=True)
-            text_embeds_nn = memory_bank(text_embeds, update=True)
+    image_embeds = outputs.image_embeds
+    text_embeds = outputs.text_embeds
+    if options.memory_bank:
+        image_embeds_nn = memory_bank(image_embeds, update=True)
+        text_embeds_nn = memory_bank(text_embeds, update=True)
+   
+    # if(options.inmodal):
+    #     image_embeds, augmented_image_embeds = outputs.image_embeds[:len(outputs.image_embeds) // 2], outputs.image_embeds[len(outputs.image_embeds) // 2:]
+    #     text_embeds, augmented_text_embeds = outputs.text_embeds[:len(outputs.text_embeds) // 2], outputs.text_embeds[len(outputs.text_embeds) // 2:]
+    #     if options.memory_bank:
+    #         image_embeds_nn = memory_bank(image_embeds, update=True)
+    #         text_embeds_nn = memory_bank(text_embeds, update=True)
 
-    if(options.cross_aug):
-        image_embeds, augmented_image_embeds = outputs.image_embeds[:len(outputs.image_embeds) // 2], outputs.image_embeds[len(outputs.image_embeds) // 2:]
-        text_embeds, augmented_text_embeds = outputs.text_embeds[:len(outputs.text_embeds) // 2], outputs.text_embeds[len(outputs.text_embeds) // 2:]
-        if options.memory_bank:
-            image_embeds_nn = memory_bank(augmented_image_embeds, update=True)
-            text_embeds_nn = memory_bank(augmented_text_embeds, update=True)
+    # if(options.cross_aug):
+    #     image_embeds, augmented_image_embeds = outputs.image_embeds[:len(outputs.image_embeds) // 2], outputs.image_embeds[len(outputs.image_embeds) // 2:]
+    #     text_embeds, augmented_text_embeds = outputs.text_embeds[:len(outputs.text_embeds) // 2], outputs.text_embeds[len(outputs.text_embeds) // 2:]
+    #     if options.memory_bank:
+    #         image_embeds_nn = memory_bank(augmented_image_embeds, update=True)
+    #         text_embeds_nn = memory_bank(augmented_text_embeds, update=True)
 
 
-    else:
-        image_embeds = outputs.image_embeds
-        text_embeds = outputs.text_embeds
-        if options.memory_bank:
-            image_embeds_nn = memory_bank(image_embeds, update=True)
-            text_embeds_nn = memory_bank(text_embeds, update=True)
+    # else:
+    #     image_embeds = outputs.image_embeds
+    #     text_embeds = outputs.text_embeds
+    #     if options.memory_bank:
+    #         image_embeds_nn = memory_bank(image_embeds, update=True)
+    #         text_embeds_nn = memory_bank(text_embeds, update=True)
             
     if(options.distributed):
         if(options.inmodal):
@@ -209,14 +215,14 @@ def train(epoch, model, data, optimizer, scheduler, scaler, options, memory_bank
 
         optimizer.zero_grad()
         
-        if(options.inmodal or options.cross_aug):
-            input_ids, attention_mask, pixel_values = batch["input_ids"][0].to(options.device, non_blocking = True), batch["attention_mask"][0].to(options.device, non_blocking = True), batch["pixel_values"][0].to(options.device, non_blocking = True)
-            augmented_input_ids, augmented_attention_mask, augmented_pixel_values = batch["input_ids"][1].to(options.device, non_blocking = True), batch["attention_mask"][1].to(options.device, non_blocking = True), batch["pixel_values"][1].to(options.device, non_blocking = True)
-            input_ids = torch.cat([input_ids, augmented_input_ids])
-            attention_mask = torch.cat([attention_mask, augmented_attention_mask])
-            pixel_values = torch.cat([pixel_values, augmented_pixel_values])
-        else:
-            input_ids, attention_mask, pixel_values = batch["input_ids"].to(options.device, non_blocking = True), batch["attention_mask"].to(options.device, non_blocking = True), batch["pixel_values"].to(options.device, non_blocking = True)
+        # if(options.inmodal or options.cross_aug):
+        #     input_ids, attention_mask, pixel_values = batch["input_ids"][0].to(options.device, non_blocking = True), batch["attention_mask"][0].to(options.device, non_blocking = True), batch["pixel_values"][0].to(options.device, non_blocking = True)
+        #     augmented_input_ids, augmented_attention_mask, augmented_pixel_values = batch["input_ids"][1].to(options.device, non_blocking = True), batch["attention_mask"][1].to(options.device, non_blocking = True), batch["pixel_values"][1].to(options.device, non_blocking = True)
+        #     input_ids = torch.cat([input_ids, augmented_input_ids])
+        #     attention_mask = torch.cat([attention_mask, augmented_attention_mask])
+        #     pixel_values = torch.cat([pixel_values, augmented_pixel_values])
+        # else:
+        input_ids, attention_mask, pixel_values = batch["input_ids"].to(options.device, non_blocking = True), batch["attention_mask"].to(options.device, non_blocking = True), batch["pixel_values"].to(options.device, non_blocking = True)
 
         outputs = model(input_ids = input_ids, attention_mask = attention_mask, pixel_values = pixel_values)
 

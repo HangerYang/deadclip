@@ -37,10 +37,10 @@ class ImageCaptionDataset(Dataset):
         item = {}
         
         if(self.inmodal or self.cross_aug):
-            item["input_ids"] = self.captions["input_ids"][idx], self.augment_captions["input_ids"][idx]
-            item["attention_mask"] = self.captions["attention_mask"][idx], self.augment_captions["attention_mask"][idx]
+            item["input_ids"] = self.augment_captions["input_ids"][idx]
+            item["attention_mask"] = self.augment_captions["attention_mask"][idx]
             # item["pixel_values"] = self.processor.process_image(Image.open(os.path.join(self.root, self.images[idx]))), self.processor.process_image(Image.open(os.path.join(self.root, self.images[idx])))
-            item["pixel_values"] = self.processor.process_image(Image.open(os.path.join(self.root, self.images[idx])).convert('RGB')), self.processor.process_image(_augment_image(os.path.join(self.root, self.images[idx])))
+            item["pixel_values"] =  self.processor.process_image(_augment_image(os.path.join(self.root, self.images[idx])))
         else:  
             item["input_ids"] = self.captions["input_ids"][idx]
             item["attention_mask"] = self.captions["attention_mask"][idx]
